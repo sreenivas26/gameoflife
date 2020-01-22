@@ -8,11 +8,19 @@ pipeline {
         }
         stage('Testing Stage'){
             steps {
-                sh 'mvn test'}
+                sh 'mvn test'
+            }
         }
         stage('Packaging Stage') {
             steps {
                 sh 'mvn package'
+            }
+        }
+            stage('Consolidate Results ') {
+            steps {
+                im=nput ("Do you want to capture results?")
+                junit '**/target/surefire-reports/TEST-*.xml'
+                
             }
         }
     }
