@@ -18,7 +18,7 @@ pipeline {
         }
             stage('Consolidate Results ') {
             steps {
-                im=nput ("Do you want to capture results?")
+                input ("Do you want to capture results?")
                 junit '**/target/surefire-reports/TEST-*.xml'
                 
             }
