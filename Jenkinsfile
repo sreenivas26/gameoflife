@@ -23,8 +23,8 @@ stages {
      }
       stage('Email Build Status') {
       steps {
-         mailbody:"${env.JOB_NAME} - Build # ${env.BUILD_NUMBER} - ${currentBuild.currentResult} \n\nCheck console output at ${env.BUILD_URL} to view the results.",subject:"${env.JOB_NAME} -Build #${env.BUILD_NUMBER} -${currentBuild.currentResult}!!",to:'sreenivas261988@gmail.com'
-    }
+        mail bcc: '', body: 'Build is Success', cc: '', from: '', replyTo: '', subject: 'Simple Subject', to: 'sreenivas261988@gmail.com'
    }
+      }
   }
 } 
