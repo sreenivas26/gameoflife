@@ -7,9 +7,6 @@ stages {
             a:{
                sh 'mvn clean'
                }
-            b:{
-               sh 'mvn test'
-                }
             c:{
                sh 'mvn package'
                 }
