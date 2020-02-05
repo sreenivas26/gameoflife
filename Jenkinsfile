@@ -1,24 +1,28 @@
-pipeline {
-agent any 
-stages {
-   stage('Parallel Pipeline') {
-      steps {
-         Parallel(
-            a:{
-               sh 'mvn clean'
-               }
-            c:{
-               sh 'mvn package'
-                }
-            )
-         }
-   }
+pipeline { 
+    agent any 
+    stages {
+        stage('Cleaning Stage') { 
+            steps { 
+                sh 'mvn clean'
+            }
+        }
+        stage('Testing Stage'){
+            steps {
+                sh 'mvn test'
+            }
+        }
+        stage('Packaging Stage') {
+            steps {
+                sh 'mvn package'
+            }
+        }
+            stage('Consolidate Results ') {
+            steps {
+                input ("Do you want to capture results?")
+                junit '**/target/surefire-reports/TEST-*.xml'
+                archive 'target/*.war'
+            }
+        }
+    }
 }
-   stage('Results') {
-      steps {
-      input ("Do you want to generate reports?")
-      junit '**/target/surefire-reports/TEST-*.xml'
-     }
-   } 
-  }
 
