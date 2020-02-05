@@ -18,7 +18,7 @@ stages {
      }
    stage('Results') {
       steps {
-      imput ("Do you want to generate reports?")
+      input ("Do you want to generate reports?")
       junit '**/target/surefire-reports/TEST-*.xml'
      }
     }
