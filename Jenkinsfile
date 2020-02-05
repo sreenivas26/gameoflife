@@ -16,7 +16,7 @@ stages {
       sh 'mvn package' 
       }
      }
-   stage('Results) {
+   stage('Results') {
       steps {
       junit '**/target/surefire-reports/TEST-*.xml'
      }
