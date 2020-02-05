@@ -3,7 +3,7 @@ agent any
 stages {
    stage('Parallel Pipeline') {
       steps {
-         Parallel(
+         Parallel{
             a: {
                sh 'mvn clean'
                }
@@ -13,7 +13,7 @@ stages {
             c: {
                sh 'mvn package'
                 }
-            )
+         }
          }
    }
 }
