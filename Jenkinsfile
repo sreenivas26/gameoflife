@@ -21,11 +21,12 @@ stages {
       input ("Do you want to generate reports?")
       junit '**/target/surefire-reports/TEST-*.xml'
      }
+   } 
    stage('Email Build Status') {
       steps {
       mail bcc: ", body: 'Build is Success', cc: ", from: ", replyTo: ", subject: 'Simple Subject', to: 'sreenivas261988@gmail.com'
    }
       }
-   }
+   
   }
 } 
