@@ -1,28 +1,27 @@
 pipeline {
 agent any 
 stages {
-   stage('Cleaning Stage') {
+   stage('Parallel Pipeline') {
       steps {
-      sh 'mvn clean'
-    }
-   } 
-   stage('Testing stage') {
-      steps {
-      sh 'mvn test'
-      }
-     }
-   stage('Packaging stage') {
-      steps {
-      sh 'mvn package' 
-      }
-     }
+         Parallel(
+            a: {
+               sh 'mvn clean'
+               }
+            b: {
+               sh 'mvn test'
+                }
+            c: {
+               sh 'mvn package'
+                }
+            )
+         }
+   }
+}
    stage('Results') {
       steps {
       input ("Do you want to generate reports?")
       junit '**/target/surefire-reports/TEST-*.xml'
      }
    } 
-   
-   
   }
-} 
+
